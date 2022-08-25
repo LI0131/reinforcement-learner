@@ -32,21 +32,10 @@ class Car:
         # update position based on speed
         self.y = self.v_y + self.y
 
-    def accelerate_x(self):
-        if self._can_change():
-            self._update_x(1)
-
-    def accelerate_y(self):
-        if self._can_change():
-            self._update_y(1)
-
-    def decelerate_x(self):
-        if self._can_change():
-            self._update_x(-1)
-
-    def decelerate_y(self):
-        if self._can_change():
-            self._update_y(-1)
+    def set_acceleration(self, a_x: int, a_y: int, nondeterministic: bool = True) -> None:
+        if not nondeterministic or self._can_change():
+            self._update_x(a_x)
+            self._update_y(a_y)
 
     def zeroize(self):
         self.v_x, self.v_y = 0, 0
